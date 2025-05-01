@@ -1,0 +1,143 @@
+
+import { Button } from "@/components/ui/button";
+import { useAuth } from "@/contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { Calendar, BookOpen, List } from "lucide-react";
+
+const Index = () => {
+  const { isAuthenticated } = useAuth();
+  const navigate = useNavigate();
+
+  return (
+    <div className="min-h-screen flex flex-col">
+      {/* Header */}
+      <header className="w-full py-4 px-6 bg-white shadow-sm flex justify-between items-center">
+        <div className="text-xl font-bold text-next-purple">NextLevel</div>
+        <div className="space-x-4">
+          {isAuthenticated ? (
+            <Button onClick={() => navigate('/dashboard')}>Go to Dashboard</Button>
+          ) : (
+            <>
+              <Button variant="outline" onClick={() => navigate('/login')}>Log in</Button>
+              <Button onClick={() => navigate('/signup')}>Sign up</Button>
+            </>
+          )}
+        </div>
+      </header>
+
+      {/* Hero Section */}
+      <section className="flex-1 flex flex-col md:flex-row items-center justify-center max-w-7xl mx-auto px-6 py-12">
+        <div className="md:w-1/2 md:pr-12 space-y-6 mb-8 md:mb-0 animate-fade-in">
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
+            AI-Powered Study Planning for Success
+          </h1>
+          <p className="text-xl text-gray-600">
+            Organize your academic life, track exams and assignments, and get AI-generated study plans
+            tailored to your schedule and learning style.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <Button 
+              size="lg" 
+              className="bg-next-purple hover:bg-next-purple-dark"
+              onClick={() => navigate(isAuthenticated ? '/dashboard' : '/signup')}
+            >
+              {isAuthenticated ? 'Go to Dashboard' : 'Get Started for Free'}
+            </Button>
+            <Button 
+              variant="outline" 
+              size="lg"
+              onClick={() => navigate('/login')}
+            >
+              Learn More
+            </Button>
+          </div>
+        </div>
+        <div className="md:w-1/2 animate-slide-in">
+          <div className="relative bg-white shadow-xl rounded-lg p-6 border border-gray-200">
+            <div className="absolute -top-3 -right-3 bg-next-purple text-white text-xs px-3 py-1 rounded-full">
+              AI Powered
+            </div>
+            <h3 className="text-lg font-semibold mb-3">Your Personalized Schedule</h3>
+            <div className="space-y-3">
+              <div className="rounded bg-gray-100 p-3 flex items-center">
+                <div className="w-3 h-3 rounded-full bg-next-orange mr-3"></div>
+                <div>
+                  <p className="font-medium">Math Midterm Exam</p>
+                  <p className="text-sm text-gray-500">Today, 10:00 AM</p>
+                </div>
+              </div>
+              <div className="rounded bg-gray-100 p-3 flex items-center">
+                <div className="w-3 h-3 rounded-full bg-next-blue mr-3"></div>
+                <div>
+                  <p className="font-medium">History Essay Draft</p>
+                  <p className="text-sm text-gray-500">Tomorrow, 2:00 PM</p>
+                </div>
+              </div>
+              <div className="rounded bg-gray-100 p-3 flex items-center">
+                <div className="w-3 h-3 rounded-full bg-next-green mr-3"></div>
+                <div>
+                  <p className="font-medium">Study Session: Chemistry</p>
+                  <p className="text-sm text-gray-500">Wed, 4:00 PM</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="bg-gray-50 py-16 px-6">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-12">Features Designed for Students</h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+              <div className="w-12 h-12 bg-next-purple/10 rounded-full flex items-center justify-center mb-4">
+                <Calendar className="h-6 w-6 text-next-purple" />
+              </div>
+              <h3 className="text-xl font-semibold mb-2">Smart Scheduling</h3>
+              <p className="text-gray-600">Manage exams, assignments, and study sessions in one place with our intuitive calendar.</p>
+            </div>
+            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+              <div className="w-12 h-12 bg-next-blue/10 rounded-full flex items-center justify-center mb-4">
+                <BookOpen className="h-6 w-6 text-next-blue" />
+              </div>
+              <h3 className="text-xl font-semibold mb-2">AI Study Planner</h3>
+              <p className="text-gray-600">Get personalized study plans generated by AI based on your schedule and learning preferences.</p>
+            </div>
+            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+              <div className="w-12 h-12 bg-next-green/10 rounded-full flex items-center justify-center mb-4">
+                <List className="h-6 w-6 text-next-green" />
+              </div>
+              <h3 className="text-xl font-semibold mb-2">Progress Tracking</h3>
+              <p className="text-gray-600">Track your progress, gain experience points, and level up as you complete your study tasks.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-white py-8 px-6">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between">
+          <div>
+            <h3 className="text-xl font-bold mb-4">NextLevel</h3>
+            <p className="text-gray-400 max-w-md">AI-powered study planning application for students who want to excel in their academic journey.</p>
+          </div>
+          <div className="mt-6 md:mt-0">
+            <h4 className="font-semibold mb-3">Quick Links</h4>
+            <ul className="space-y-2">
+              <li><button className="text-gray-400 hover:text-white">About</button></li>
+              <li><button className="text-gray-400 hover:text-white">Features</button></li>
+              <li><button className="text-gray-400 hover:text-white">Pricing</button></li>
+              <li><button className="text-gray-400 hover:text-white">Contact</button></li>
+            </ul>
+          </div>
+        </div>
+        <div className="max-w-7xl mx-auto mt-8 pt-6 border-t border-gray-800 text-center text-gray-500">
+          <p>&copy; {new Date().getFullYear()} NextLevel AI Study Planner. All rights reserved.</p>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default Index;

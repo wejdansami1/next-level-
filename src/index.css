@@ -1,0 +1,224 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Nunito:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 44 30% 92%;  /* Light cardboard color */
+    --foreground: 30 10% 25%;  /* Wood brown text */
+
+    --card: 40 33% 96%;        /* Lighter paper color */
+    --card-foreground: 30 10% 25%;
+
+    --popover: 40 33% 96%;
+    --popover-foreground: 30 10% 25%;
+
+    --primary: 262 31% 50%;    /* Next-purple */
+    --primary-foreground: 40 33% 96%;
+
+    --secondary: 32 20% 90%;   /* Light stitching color */
+    --secondary-foreground: 30 15% 30%;
+
+    --muted: 33 15% 85%;       /* Muted fabric color */
+    --muted-foreground: 30 10% 40%;
+
+    --accent: 40 25% 88%;      /* Light felt color */
+    --accent-foreground: 30 15% 30%;
+
+    --destructive: 0 60% 50%;  /* Red felt color */
+    --destructive-foreground: 40 33% 96%;
+
+    --border: 30 15% 75%;      /* Stitching color */
+    --input: 30 15% 85%;       /* Input background */
+    --ring: 262 31% 50%;       /* Ring color */
+
+    --radius: 1rem;            /* Rounded edges like LBP */
+
+    --sidebar-background: 265, 29%, 25%;
+    --sidebar-foreground: 40 33% 96%;
+    --sidebar-primary: 262 31% 50%;
+    --sidebar-primary-foreground: 40 33% 96%;
+    --sidebar-accent: 263 35% 32%;
+    --sidebar-accent-foreground: 40 33% 96%;
+    --sidebar-border: 263 25% 30%;
+    --sidebar-ring: 262 31% 50%;
+  }
+
+  .dark {
+    --background: 240 15% 15%;      /* Dark felt/fabric background */
+    --foreground: 40 20% 90%;       /* Light text on dark background */
+
+    --card: 235 15% 20%;            /* Dark cardboard */
+    --card-foreground: 40 20% 90%;
+
+    --popover: 235 15% 20%;
+    --popover-foreground: 40 20% 90%;
+
+    --primary: 262 40% 60%;         /* Brighter purple for dark mode */
+    --primary-foreground: 40 20% 90%;
+
+    --secondary: 240 10% 25%;       /* Dark stitching color */
+    --secondary-foreground: 40 20% 90%;
+
+    --muted: 240 10% 25%;
+    --muted-foreground: 40 10% 75%;
+
+    --accent: 240 10% 30%;
+    --accent-foreground: 40 20% 90%;
+
+    --destructive: 0 60% 40%;       /* Darker red felt */
+    --destructive-foreground: 40 20% 90%;
+
+    --border: 240 10% 35%;          /* Darker stitching */
+    --input: 240 10% 30%;
+    --ring: 262 40% 60%;
+
+    --sidebar-background: 265, 29%, 18%;
+    --sidebar-foreground: 40 20% 90%;
+    --sidebar-primary: 262 40% 60%;
+    --sidebar-primary-foreground: 40 20% 90%;
+    --sidebar-accent: 263 30% 30%;
+    --sidebar-accent-foreground: 40 20% 90%;
+    --sidebar-border: 263 25% 25%;
+    --sidebar-ring: 262 40% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    background-image: url('/textures/cardboard.png');
+    background-repeat: repeat;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+}
+
+@layer components {
+  /* LBP-inspired UI components */
+  .lbp-card {
+    @apply bg-card rounded-xl border-2 border-lbp-stitch shadow-lbp-card 
+           transition-all duration-300 hover:shadow-lbp-hover 
+           relative overflow-hidden;
+    background-image: url('/textures/paper.png');
+    background-repeat: repeat;
+  }
+
+  .lbp-button {
+    @apply font-heading rounded-full px-6 py-2 shadow-lbp-button 
+           transition-all duration-200 active:scale-95 
+           hover:shadow-lbp-hover border-2 border-lbp-stitch;
+    background-image: url('/textures/felt.png');
+    background-repeat: repeat;
+  }
+
+  .lbp-stitched {
+    @apply border-2 border-dashed border-lbp-stitch rounded-xl p-1;
+  }
+
+  .lbp-popper {
+    @apply hover:animate-lbp-float transition-all duration-300;
+  }
+
+  /* Event styles with LBP-inspired design */
+  .event-exam {
+    @apply border-2 border-dashed border-lbp-felt-red rounded-xl shadow-md;
+    background-image: linear-gradient(to right, rgb(214, 104, 83, 0.8), rgb(214, 104, 83, 0.7));
+  }
+  
+  .event-assignment {
+    @apply border-2 border-dashed border-lbp-felt-blue rounded-xl shadow-md;
+    background-image: linear-gradient(to right, rgb(94, 159, 185, 0.8), rgb(94, 159, 185, 0.7));
+  }
+  
+  .event-study {
+    @apply border-2 border-dashed border-lbp-felt-green rounded-xl shadow-md;
+    background-image: linear-gradient(to right, rgb(125, 179, 122, 0.8), rgb(125, 179, 122, 0.7));
+  }
+  
+  .event-personal {
+    @apply border-2 border-dashed border-next-purple rounded-xl shadow-md;
+    background-image: linear-gradient(to right, rgb(110, 89, 165, 0.8), rgb(110, 89, 165, 0.7));
+  }
+  
+  .event-custom {
+    @apply border-2 border-dashed border-next-gray rounded-xl shadow-md;
+    background-image: linear-gradient(to right, rgb(142, 145, 150, 0.8), rgb(142, 145, 150, 0.7));
+  }
+  
+  .event-break {
+    @apply border-2 border-dashed border-lbp-felt-yellow rounded-xl shadow-md;
+    background-image: linear-gradient(to right, rgb(226, 194, 117, 0.8), rgb(226, 194, 117, 0.7));
+    @apply text-gray-700;
+  }
+  
+  .event-meeting {
+    @apply border-2 border-dashed border-lbp-felt-blue rounded-xl shadow-md;
+    background-image: linear-gradient(to right, rgb(94, 159, 185, 0.8), rgb(94, 159, 185, 0.7));
+  }
+}
+
+@layer utilities {
+  /* Animation utilities */
+  @keyframes lbp-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+  }
+  
+  @keyframes lbp-squish {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(0.95); }
+  }
+  
+  @keyframes lbp-pop {
+    0% { transform: scale(0.95); opacity: 0; }
+    60% { transform: scale(1.03); }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  
+  @keyframes lbp-wiggle {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(1deg); }
+    75% { transform: rotate(-1deg); }
+  }
+  
+  @keyframes lbp-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+  }
+  
+  .animate-lbp-bounce {
+    animation: lbp-bounce 2s ease-in-out infinite;
+  }
+  
+  .animate-lbp-squish {
+    animation: lbp-squish 0.3s ease-in-out;
+  }
+  
+  .animate-lbp-pop {
+    animation: lbp-pop 0.4s ease-out;
+  }
+  
+  .animate-lbp-wiggle {
+    animation: lbp-wiggle 1s ease-in-out infinite;
+  }
+  
+  .animate-lbp-float {
+    animation: lbp-float 3s ease-in-out infinite;
+  }
+  
+  /* Add LBP themed overlay patterns */
+  .pattern-stitches {
+    background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23D8C2AD' fill-opacity='0.2' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='1'/%3E%3Ccircle cx='13' cy='13' r='1'/%3E%3C/g%3E%3C/svg%3E");
+  }
+}

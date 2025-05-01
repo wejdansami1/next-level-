@@ -1,0 +1,22 @@
+1. Prerequisites
+- Make sure you have Node.js installed
+- Have npm (Node Package Manager) installed
+
+2. Install Dependencies
+# Navigate to the project directory
+- d c:\Users\DELL\Documents\NextLevel-V4.6
+
+# Install dependencies
+- npm install
+
+3. Run the Development Server
+# Start the development server
+- npm run dev
+
+# If you encounter any issues during installation or startup, try:
+# Clear npm cache
+- npm cache clean --force
+
+# Remove node_modules and reinstall
+- rm -rf node_modules
+- npm install
